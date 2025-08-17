@@ -1,26 +1,53 @@
 @import "tailwindcss";
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+	:root {
+		--color-background: #0d0f14; /* dark futuristic bg */
+		--color-surface: rgba(255, 255, 255, 0.05); /* glassy card */
+		--color-foreground: #e0e0ff; /* light text */
+		--color-primary: #7f5af0; /* neon purple */
+		--color-primary-dark: #5a3ebf;
+		--color-accent: #22d3ee; /* cyan accent for hover/glow */
+		--color-border: rgba(255, 255, 255, 0.1);
+	}
+
+	body {
+		font-family: 'Inter', sans-serif;
+		background-color: var(--color-background);
+		color: var(--color-foreground);
+		line-height: 1.6;
+	}
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+	.bg-background {
+		background-color: var(--color-background);
+	}
+	.bg-surface {
+		background: var(--color-surface);
+		backdrop-filter: blur(12px);
+		border: 1px solid var(--color-border);
+	}
+	.text-foreground {
+		color: var(--color-foreground);
+	}
+	.bg-primary {
+		background-color: var(--color-primary);
+	}
+	.bg-primary-dark {
+		background-color: var(--color-primary-dark);
+	}
+	.btn-futuristic {
+		@apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+		background: var(--color-primary);
+		color: white;
+		box-shadow: 0 0 8px var(--color-primary);
+	}
+	.btn-futuristic:hover {
+		background: var(--color-primary-dark);
+	}
+	.shadow-card {
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+	}
 }
